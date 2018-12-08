@@ -1,7 +1,7 @@
 {
-    "map_name": "Box Station",
-    "map_path": "map_files/BoxStation",
-    "map_file": "BoxStation.dmm",
+    "map_name": "Wizard Station",
+    "map_path": "map_files/WizardStation",
+    "map_file": "WizardStation.dmm",
     "shuttles": {
 	    "cargo": "cargo_box",
 	    "ferry": "ferry_fancy",
