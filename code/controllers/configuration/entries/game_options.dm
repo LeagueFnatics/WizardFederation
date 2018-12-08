@@ -48,7 +48,7 @@
 
 /datum/config_entry/flag/jobs_have_minimal_access	//determines whether jobs use minimal access or expanded access.
 
-/datum/config_entry/flag/assistants_have_maint_access
+/datum/config_entry/flag/acolytes_have_maint_access
 
 /datum/config_entry/flag/security_has_maint_access
 
@@ -307,10 +307,10 @@
 	min_val = -1
 
 /datum/config_entry/string/overflow_job
-	config_entry_value = "Assistant"
+	config_entry_value = "Acolyte"
 
 /datum/config_entry/flag/starlight
-/datum/config_entry/flag/grey_assistants
+/datum/config_entry/flag/grey_acolytes
 
 /datum/config_entry/number/lavaland_budget
 	config_entry_value = 60

@@ -36,7 +36,7 @@
 	if(!uses)
 		to_chat(user, "<span class='warning'>This spawner is out of charges!</span>")
 		return
-	if(jobban_isbanned(user, banType))
+	if(is_banned_from(user.key, banType))
 		to_chat(user, "<span class='warning'>You are jobanned!</span>")
 		return
 	if(QDELETED(src) || QDELETED(user))
@@ -286,17 +286,17 @@
 
 ///////////Civilians//////////////////////
 
-/obj/effect/mob_spawn/human/corpse/assistant
+/obj/effect/mob_spawn/human/corpse/acolyte
 	name = "Assistant"
-	outfit = /datum/outfit/job/assistant
+	outfit = /datum/outfit/job/acolyte
 
-/obj/effect/mob_spawn/human/corpse/assistant/beesease_infection
+/obj/effect/mob_spawn/human/corpse/acolyte/beesease_infection
 	disease = /datum/disease/beesease
 
-/obj/effect/mob_spawn/human/corpse/assistant/brainrot_infection
+/obj/effect/mob_spawn/human/corpse/acolyte/brainrot_infection
 	disease = /datum/disease/brainrot
 
-/obj/effect/mob_spawn/human/corpse/assistant/spanishflu_infection
+/obj/effect/mob_spawn/human/corpse/acolyte/spanishflu_infection
 	disease = /datum/disease/fluspanish
 
 /obj/effect/mob_spawn/human/corpse/cargo_tech

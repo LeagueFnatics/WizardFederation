@@ -40,7 +40,7 @@
 #define CHAPLAIN		(1<<10)
 #define CLOWN			(1<<11)
 #define MIME			(1<<12)
-#define ASSISTANT		(1<<13)
+#define ACOLYTE			(1<<13)
 
 #define JOB_AVAILABLE 0
 #define JOB_UNAVAILABLE_GENERIC 1
@@ -49,5 +49,5 @@
 #define JOB_UNAVAILABLE_ACCOUNTAGE 4
 #define JOB_UNAVAILABLE_SLOTFULL 5
 
-#define DEFAULT_RELIGION "Christianity"
-#define DEFAULT_DEITY "Space Jesus"
+#define DEFAULT_RELIGION "Space Majicks"
+#define DEFAULT_DEITY "RNGesus"

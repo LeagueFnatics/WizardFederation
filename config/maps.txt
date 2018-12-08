@@ -12,7 +12,7 @@ Format:
 	disabled (disables the map)
 endmap
 
-map boxstation
+map wizardstation
 	default
 	#voteweight 1.5
 endmap

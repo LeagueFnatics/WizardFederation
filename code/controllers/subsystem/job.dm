@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(job)
 	var/list/prioritized_jobs = list()
 	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead
 
-	var/overflow_role = "Assistant"
+	var/overflow_role = "Acolyte"
 
 /datum/controller/subsystem/job/Initialize(timeofday)
 	SSmapping.HACK_LoadMapConfig()
@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(job)
 		var/datum/job/job = GetJob(rank)
 		if(!job)
 			return FALSE
-		if(jobban_isbanned(player, rank) || QDELETED(player))
+		if(is_banned_from(player.ckey, rank) || QDELETED(player))
 			return FALSE
 		if(!job.player_old_enough(player.client))
 			return FALSE
@@ -101,7 +101,7 @@ SUBSYSTEM_DEF(job)
 	JobDebug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
 	for(var/mob/dead/new_player/player in unassigned)
-		if(jobban_isbanned(player, job.title) || QDELETED(player))
+		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 			JobDebug("FOC isbanned failed, Player: [player]")
 			continue
 		if(!job.player_old_enough(player.client))
@@ -128,13 +128,13 @@ SUBSYSTEM_DEF(job)
 		if(!job)
 			continue
 
-		if(istype(job, GetJob(SSjob.overflow_role))) // We don't want to give him assistant, that's boring!
+		if(istype(job, GetJob(SSjob.overflow_role))) // We don't want to give him acolyte, that's boring!
 			continue
 
 		if(job.title in GLOB.command_positions) //If you want a command position, select it!
 			continue
 
-		if(jobban_isbanned(player, job.title) || QDELETED(player))
+		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 			if(QDELETED(player))
 				JobDebug("GRJ isbanned failed, Player deleted")
 				break
@@ -311,7 +311,7 @@ SUBSYSTEM_DEF(job)
 				if(!job)
 					continue
 
-				if(jobban_isbanned(player, job.title))
+				if(is_banned_from(player.ckey, job.title))
 					JobDebug("DO isbanned failed, Player: [player], Job:[job.title]")
 					continue
 
@@ -351,7 +351,7 @@ SUBSYSTEM_DEF(job)
 	//Mop up people who can't leave.
 	for(var/mob/dead/new_player/player in unassigned) //Players that wanted to back out but couldn't because they're antags (can you feel the edge case?)
 		if(!GiveRandomJob(player))
-			AssignRole(player, SSjob.overflow_role) //If everything is already filled, make them an assistant
+			AssignRole(player, SSjob.overflow_role) //If everything is already filled, make them an acolyte
 
 	return 1
 
@@ -360,7 +360,7 @@ SUBSYSTEM_DEF(job)
 	if(PopcapReached())
 		RejectPlayer(player)
 	else if(player.client.prefs.joblessrole == BEOVERFLOW)
-		var/allowed_to_be_a_loser = !jobban_isbanned(player, SSjob.overflow_role)
+		var/allowed_to_be_a_loser = !is_banned_from(player.ckey, SSjob.overflow_role)
 		if(QDELETED(player) || !allowed_to_be_a_loser)
 			RejectPlayer(player)
 		else
@@ -489,7 +489,7 @@ SUBSYSTEM_DEF(job)
 		for(var/mob/dead/new_player/player in GLOB.player_list)
 			if(!(player.ready == PLAYER_READY_TO_PLAY && player.mind && !player.mind.assigned_role))
 				continue //This player is not ready
-			if(jobban_isbanned(player, job.title) || QDELETED(player))
+			if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 				banned++
 				continue
 			if(!job.player_old_enough(player.client))

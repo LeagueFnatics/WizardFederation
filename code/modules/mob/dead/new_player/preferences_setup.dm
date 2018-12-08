@@ -41,8 +41,8 @@
 	var/datum/job/previewJob
 	var/highRankFlag = job_civilian_high | job_medsci_high | job_engsec_high
 
-	if(job_civilian_low & ASSISTANT)
-		previewJob = SSjob.GetJob("Assistant")
+	if(job_civilian_low & ACOLYTE)
+		previewJob = SSjob.GetJob("Acolyte")
 	else if(highRankFlag)
 		var/highDeptFlag
 		if(job_civilian_high)
