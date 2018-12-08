@@ -1,21 +1,21 @@
 //used for holding information about unique properties of maps
 //feed it json files that match the datum layout
-//defaults to box
-//  -Cyberboss
+//defaults to Wizard
+//  -Cyberboss (Appended Box to Wizard)
 
 /datum/map_config
 	// Metadata
-	var/config_filename = "_maps/boxstation.json"
+	var/config_filename = "_maps/wizardstation.json"
 	var/defaulted = TRUE  // set to FALSE by LoadConfig() succeeding
 	// Config from maps.txt
 	var/config_max_users = 0
 	var/config_min_users = 0
 	var/voteweight = 1
 
-	// Config actually from the JSON - should default to Box
-	var/map_name = "Box Station"
-	var/map_path = "map_files/BoxStation"
-	var/map_file = "BoxStation.dmm"
+	// Config actually from the JSON - should default to Wizard
+	var/map_name = "Wizard Station"
+	var/map_path = "map_files/WizardStation"
+	var/map_file = "WizardStation.dmm"
 
 	var/traits = null
 	var/space_ruin_levels = 7
@@ -36,7 +36,7 @@
 		return config
 	if (!config.LoadConfig(filename, error_if_missing))
 		qdel(config)
-		config = new /datum/map_config  // Fall back to Box
+		config = new /datum/map_config  // Fall back to Wizard
 	if (delete_after)
 		fdel(filename)
 	return config
@@ -71,7 +71,7 @@
 	map_path = json["map_path"]
 
 	map_file = json["map_file"]
-	// "map_file": "BoxStation.dmm"
+	// "map_file": "WizardStation.dmm"
 	if (istext(map_file))
 		if (!fexists("_maps/[map_path]/[map_file]"))
 			log_world("Map file ([map_path]/[map_file]) does not exist!")
